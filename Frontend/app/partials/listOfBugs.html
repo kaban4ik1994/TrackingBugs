@@ -1,0 +1,76 @@
+﻿<div class="container">
+
+    <button class="btn btn-info" ng-click="open()">Add</button>
+
+
+    <div class="btn-group" dropdown is-open="status.isopen">
+        <button type="button" class="btn btn-primary dropdown-toggle" ng-disabled="disabled">
+            {{filterParams.whoRep}} <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a ng-click="chooseItem('', filterParams.stat, filterParams.sortBy, filterParams.sortDirection)">Empty</a></li>
+            <li ng-repeat="param in parameters.ParametersForAFilter">
+                <a ng-click="chooseItem(param, filterParams.stat, filterParams.sortBy, filterParams.sortDirection)">{{param}}</a>
+            </li>
+        </ul>
+    </div>
+
+
+
+
+    <div class="btn-group" dropdown is-open="status.isopen1">
+        <button type="button" class="btn btn-primary dropdown-toggle" ng-disabled="disabled">
+            {{filterParams.stat}} <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a ng-click="chooseItem(filterParams.whoRep, '', filterParams.sortBy, filterParams.sortDirection)">Empty</a></li>
+            <li ng-repeat="status in StatusDropDownList">
+                <a ng-click="chooseItem(filterParams.whoRep, status, filterParams.sortBy, filterParams.sortDirection)">{{status}}</a>
+            </li>
+        </ul>
+    </div>
+
+
+    <pagination total-items="parameters.CountBugs" ng-model="currentPage" ng-change="pageChanged()"></pagination>
+
+    <table class="table table-hover">
+        <tr>
+            <th>Id</th>
+            <th>Who reported</th>
+            <th>
+                <div class="btn-group" dropdown is-open="status.isopen2">
+                    <button type="button" class="btn btn-primary dropdown-toggle" ng-disabled="disabled">
+                        Date ({{filterParams.sortDirection}}) <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a ng-click="chooseItem(filterParams.whoRep, filterParams.stat)">Empty</a></li>
+                        <li><a ng-click="chooseItem(filterParams.whoRep, filterParams.stat, 'Date', true)">Ascending</a></li>
+                        <li><a ng-click="chooseItem(filterParams.whoRep, filterParams.stat, 'Date', false)">Descending</a></li>
+                    </ul>
+                </div>
+            </th>
+            <th>Status</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr ng-repeat="bug in bugs ">
+
+            <td>{{bug.Id}}</td>
+            <td>
+                {{bug.WhoReported}}
+            </td>
+            <td>
+
+                {{bug.Date |date:'yyyy-MM-dd'}}
+
+            </td>
+            <td>
+                {{bug.Status}}
+            </td>
+            <td><button class="btn btn-warning" ng-click="open(bug)">Edit</button></td>
+
+            <td><button class="btn btn-danger" ng-click="delete(bug)">Delete</button></td>
+        </tr>
+    </table>
+
+</div>

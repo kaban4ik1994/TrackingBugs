@@ -1,0 +1,22 @@
+﻿<div class="modal-header">
+    <div class="modal-body">
+        {{bug.Id}}
+        
+        <select ng-model="bug.WhoReported">
+            <option ng-repeat="name in names">{{name}}</option>
+        </select>
+        
+        <select ng-model="bug.Status">
+            <option ng-repeat="st in statuses">{{st}}</option>
+        </select>
+        
+
+        <div style="display:inline-block; min-height:290px;">
+            <datepicker ng-model="bug.Date"  min-date="minDate" show-weeks="false" class="well well-sm"></datepicker>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok(bug)">OK</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>
