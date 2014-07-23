@@ -40,7 +40,10 @@
             <th>
                 <div class="btn-group" dropdown is-open="status.isopen2">
                     <button type="button" class="btn btn-primary dropdown-toggle" ng-disabled="disabled">
-                        Date ({{filterParams.sortDirection}}) <span class="caret"></span>
+                        Date  <span class="caret"></span>
+                        <span ng-if="filterParams.sortDirection==true">(Ascending)</span>
+                        <span ng-if="filterParams.sortDirection==false">(Descending)</span>
+                        <span ng-if="filterParams.sortDirection==''"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         <li><a ng-click="chooseItem(filterParams.whoRep, filterParams.stat)">Empty</a></li>

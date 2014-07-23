@@ -18,7 +18,7 @@ $scope.filterParams =
     whoRep: '',
     stat: '',
     sortBy: '',
-    sortDirection: ''
+    sortDirection:null
 };
 
 
