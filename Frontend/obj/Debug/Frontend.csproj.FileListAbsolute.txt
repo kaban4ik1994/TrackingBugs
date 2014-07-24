@@ -10,3 +10,9 @@ E:\программирование\itransition\TrackingBug\Frontend\bin\Fronten
 E:\программирование\itransition\TrackingBug\Frontend\obj\Debug\Frontend.csprojResolveAssemblyReference.cache
 E:\программирование\itransition\TrackingBug\Frontend\obj\Debug\Frontend.dll
 E:\программирование\itransition\TrackingBug\Frontend\obj\Debug\Frontend.pdb
+E:\программирование\github\TrackingBugs\Frontend\bin\Frontend.dll.config
+E:\программирование\github\TrackingBugs\Frontend\bin\Frontend.dll
+E:\программирование\github\TrackingBugs\Frontend\bin\Frontend.pdb
+E:\программирование\github\TrackingBugs\Frontend\obj\Debug\Frontend.csprojResolveAssemblyReference.cache
+E:\программирование\github\TrackingBugs\Frontend\obj\Debug\Frontend.dll
+E:\программирование\github\TrackingBugs\Frontend\obj\Debug\Frontend.pdb

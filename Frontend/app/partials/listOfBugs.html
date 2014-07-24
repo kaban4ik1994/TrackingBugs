@@ -1,7 +1,11 @@
-﻿<div class="container">
+﻿
+<alert  ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" >{{alert.msg}}</alert>
+
+<div class="container">
 
     <button class="btn btn-info" ng-click="open()">Add</button>
-
+    
+    
 
     <div class="btn-group" dropdown is-open="status.isopen">
         <button type="button" class="btn btn-primary dropdown-toggle" ng-disabled="disabled">
@@ -30,10 +34,10 @@
         </ul>
     </div>
 
-
     <pagination total-items="parameters.CountBugs" ng-model="currentPage" ng-change="pageChanged()"></pagination>
 
     <table class="table table-hover">
+     
         <tr>
             <th>Id</th>
             <th>Who reported</th>

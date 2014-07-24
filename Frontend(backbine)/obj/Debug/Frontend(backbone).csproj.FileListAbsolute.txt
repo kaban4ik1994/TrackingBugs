@@ -1,0 +1,6 @@
+E:\программирование\github\TrackingBugs\Frontend(backbine)\bin\Frontend(backbine).dll.config
+E:\программирование\github\TrackingBugs\Frontend(backbine)\bin\Frontend(backbine).dll
+E:\программирование\github\TrackingBugs\Frontend(backbine)\bin\Frontend(backbine).pdb
+E:\программирование\github\TrackingBugs\Frontend(backbine)\obj\Debug\Frontend(backbone).csprojResolveAssemblyReference.cache
+E:\программирование\github\TrackingBugs\Frontend(backbine)\obj\Debug\Frontend(backbine).dll
+E:\программирование\github\TrackingBugs\Frontend(backbine)\obj\Debug\Frontend(backbine).pdb

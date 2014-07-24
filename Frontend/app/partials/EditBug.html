@@ -1,22 +1,48 @@
-﻿<div class="modal-header">
-    <div class="modal-body">
-        {{bug.Id}}
-        
-        <select ng-model="bug.WhoReported">
-            <option ng-repeat="name in names">{{name}}</option>
-        </select>
-        
-        <select ng-model="bug.Status">
-            <option ng-repeat="st in statuses">{{st}}</option>
-        </select>
-        
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-3">
+            <div style="display:inline-block">
+                <datepicker ng-model="bug.Date" min-date="minDate" show-weeks="false" class="well well-sm"></datepicker>
+            </div>
+        </div>
+    </div>
 
-        <div style="display:inline-block; min-height:290px;">
-            <datepicker ng-model="bug.Date"  min-date="minDate" show-weeks="false" class="well well-sm"></datepicker>
+
+
+    <div class="row">
+        <div class="col-md-1 col-md-offset-3" style="font-size: 200%">
+            <strong> {{bug.Id}} </strong>
+        </div>
+        <div class="col-md-2">
+            <div class="btn-group" dropdown is-open="stat.isopen">
+                <button type="button" class="btn btn-danger dropdown-toggle  btn-lg" ng-disabled="disabled">
+                    {{bug.WhoReported}} <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li ng-repeat="name in names"><a ng-click="bug.WhoReported=name;stat.isopen=false">{{name}}</a></li>
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-md-offset-1">
+            <div class="btn-group" dropdown is-open="stat.isopen1">
+                <button type="button" class="btn btn-danger dropdown-toggle  btn-lg" ng-disabled="disabled">
+                    {{bug.Status}} <span class="caret"></span>
+                </button>
+
+                <ul class="dropdown-menu" role="menu">
+
+                    <li ng-repeat="st in statuses"><a ng-click="bug.Status=st;stat.isopen1=false">{{st}}</a></li>
+
+                </ul>
+            </div>
         </div>
     </div>
 </div>
+
 <div class="modal-footer">
+    <p class="text-danger" ng-if="error">Fill the fields</p>
     <button class="btn btn-primary" ng-click="ok(bug)">OK</button>
     <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
 </div>

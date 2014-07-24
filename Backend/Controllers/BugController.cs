@@ -19,6 +19,9 @@ namespace Backend.Controllers
     {
         private BugContext _db = new BugContext();
 
+
+
+
         public IEnumerable<Bug> Get(int offset, int limit, [FromUri]FilterSettings filterSettings)
         {
 
@@ -29,7 +32,7 @@ namespace Backend.Controllers
 
             if (filterSettings.SortBy == "Date")
             {
-                if (filterSettings.SortDirection==true)
+                if (filterSettings.SortDirection)
                     temp = temp.OrderBy(x => x.Date);
                 if (filterSettings.SortDirection==false)
                     temp = temp.OrderByDescending(x => x.Date);
@@ -39,7 +42,7 @@ namespace Backend.Controllers
             {
                 if (filterSettings.SortDirection)
                     temp = temp.OrderBy(x => x.WhoReported);
-                if (!filterSettings.SortDirection)
+                if (!filterSettings.SortDirection==false)
                     temp = temp.OrderByDescending(x => x.WhoReported);
             }
 
