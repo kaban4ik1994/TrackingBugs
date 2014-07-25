@@ -2,6 +2,13 @@
 app.controller('BugListCtrl', ['$scope', 'Bug', '$modal', '$interval', function ($scope, Bug, $modal, $interval) {
 
 
+
+    /////анимашки
+    $scope.mouse = false;
+    $scope.sun = false;
+    $scope.snow = false;
+
+    /////
     //////////////////тут алерты
     $scope.alerts = [];
 
@@ -96,7 +103,7 @@ app.controller('BugListCtrl', ['$scope', 'Bug', '$modal', '$interval', function 
 
 
     $scope.open = function (bug) {
-
+        $scope.isCollapsed = true;
         var modalInstance = $modal.open({
             templateUrl: 'app/partials/EditBug.html',
             controller: EditBug,
@@ -116,12 +123,15 @@ app.controller('BugListCtrl', ['$scope', 'Bug', '$modal', '$interval', function 
 
         modalInstance.result.then(function (item) {
 
-            Bug.update({ id: item.Id, status: item.Status, date: item.Date, whoReported: item.WhoReported }, function () {
+            Bug.update({ id: item.Id, status: item.Status, date: item.Date, whoReported: item.WhoReported }, function (data) {
                 $scope.addAlert('success', 'success');
                 if (item.Id == 0) {
                     if ($scope.currentPage == Math.ceil($scope.parameters.CountBugs / 10)) { //если находимся на посл странице- нужно обновить содержимое
 
-                        $scope.bugs = Bug.query({ offset: ($scope.currentPage - 1) * 10, limit: 10, WhoReported: $scope.filterParams.whoRep, Status: $scope.filterParams.stat, SortBy: $scope.filterParams.sortBy, SortDirection: $scope.filterParams.sortDirection });
+                        item.Id = data.Id;
+                        $scope.bugs.push(item);
+                        //     $scope.bugs = Bug.query({ offset: ($scope.currentPage - 1) * 10, limit: 10, WhoReported: $scope.filterParams.whoRep, Status: $scope.filterParams.stat, SortBy: $scope.filterParams.sortBy, SortDirection: $scope.filterParams.sortDirection });
+
                     }
                     $scope.parameters.CountBugs++;
 
@@ -165,9 +175,6 @@ app.controller('Pagination', ['$scope', 'Bug', function ($scope, Bug) {
 
 
 var EditBug = function ($scope, $modalInstance, item) {
-
-
-
 
     $scope.bug = item;
     $scope.error = false;

@@ -1,17 +1,20 @@
 ﻿
+
+
+
+<div class="mouse" ng-show="mouse"></div>
+
 <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
 
 <div class="container">
+    <div class="row" style="margin-top: 10px; opacity: 0.8">
+        <button type="button" class="btn btn-info col-md-1" style="width: 18%" ng-click="isCollapsed=!isCollapsed">Menu</button>
 
-    <button type="button" ng-model="singleModel" class="btn btn-info col-md-offset-4" style="width: 20%" ng-click="isCollapsed=!isCollapsed" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">Menu</button>
-    <div class="row">
-        <div collapse="isCollapsed" class="col-md-offset-4">
-
+        <div collapse="isCollapsed" class="col-md-offset-2" style="position: fixed; z-index: 9999">
 
             <button class="btn btn-info" ng-click="open()">Add</button>
 
-
-            <div class="btn-group" dropdown is-open="status.isopen" class="col-md-1">
+            <div class="btn-group" dropdown is-open="status.isopen">
                 <button type="button" class="btn btn-primary dropdown-toggle" ng-disabled="disabled">
                     {{filterParams.whoRep}} <span class="caret"></span>
                 </button>
@@ -26,8 +29,8 @@
 
 
 
-            <div class="btn-group" dropdown is-open="status.isopen1" class="col-md-2">
-                <button type="button" class="btn btn-primary dropdown-toggle" ng-disabled="disabled">
+            <div class="btn-group" dropdown is-open="status.isopen1">
+                <button type=" button" class="btn btn-primary dropdown-toggle" ng-disabled="disabled">
                     {{filterParams.stat}} <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
@@ -37,14 +40,23 @@
                     </li>
                 </ul>
             </div>
+
+            <div class="btn-group">
+                <label class="btn btn-primary" ng-model="mouse" btn-checkbox>Mouse</label>
+            </div>
+
         </div>
 
-        <div class="col-md-3 col-md-offset-4">
-            <pagination total-items="parameters.CountBugs" ng-model="currentPage" ng-change="pageChanged()"></pagination>
+
+
+
+        <div class="col-md-4 col-md-offset-4">
+            <pagination total-items="parameters.CountBugs" ng-model="currentPage" ng-change="pageChanged()" style="margin: 0 0"></pagination>
         </div>
+    </div>
+    <div class="row">
 
     </div>
-
 
 
     <table class="table table-hover">
@@ -71,7 +83,8 @@
             <th></th>
             <th></th>
         </tr>
-        <tr ng-repeat="bug in bugs ">
+        <tr ng-repeat="bug in bugs" class="at-repeat-fly-reverse-in
+         at-repeat-fly-reverse-out">
 
             <td>{{bug.Id}}</td>
             <td>

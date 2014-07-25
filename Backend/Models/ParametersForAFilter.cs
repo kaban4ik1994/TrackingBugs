@@ -10,4 +10,9 @@ namespace Backend.Models
         public int CountBugs { get; set; }
         public List<string> ParametersForAFilter { get; set; } 
     }
+
+    public class IdBug
+    {
+        public int Id { get; set; }
+    }
 }

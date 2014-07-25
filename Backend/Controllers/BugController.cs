@@ -19,6 +19,7 @@ namespace Backend.Controllers
     {
         private BugContext _db = new BugContext();
 
+
         public IEnumerable<Bug> Get(int offset, int limit, [FromUri]FilterSettings filterSettings)
         {
 
@@ -104,9 +105,9 @@ namespace Backend.Controllers
         }
 
         [System.Web.Http.HttpPut]
-        public void Put(string status, string date, string whoReported, int id = 0)
+        public IdBug Put(string status, string date, string whoReported, int id = 0)
         {
-
+            var idBug = 0;
             if (id != 0)
             {
                 var bug = _db.Bugs.ToList().Find(e => e.Id == id);
@@ -115,8 +116,7 @@ namespace Backend.Controllers
                 date = date.Trim(charsToTrim);
                 bug.Date = Convert.ToDateTime(date);
                 bug.WhoReported = whoReported;
-
-
+                _db.SaveChanges();
             }
             else
             {
@@ -126,10 +126,11 @@ namespace Backend.Controllers
                 bug.Date = Convert.ToDateTime(date);
                 bug.WhoReported = whoReported;
                 _db.Bugs.Add(bug);
-
+                _db.SaveChanges();
+                idBug = bug.Id;
             }
 
-            _db.SaveChanges();
+            return new IdBug{Id=idBug};
         }
 
     }
