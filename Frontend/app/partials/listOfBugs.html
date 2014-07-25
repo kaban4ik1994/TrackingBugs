@@ -1,43 +1,54 @@
 ﻿
-<alert  ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" >{{alert.msg}}</alert>
+<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
 
 <div class="container">
 
-    <button class="btn btn-info" ng-click="open()">Add</button>
-    
-    
+    <button type="button" ng-model="singleModel" class="btn btn-info col-md-offset-4" style="width: 20%" ng-click="isCollapsed=!isCollapsed" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">Menu</button>
+    <div class="row">
+        <div collapse="isCollapsed" class="col-md-offset-4">
 
-    <div class="btn-group" dropdown is-open="status.isopen">
-        <button type="button" class="btn btn-primary dropdown-toggle" ng-disabled="disabled">
-            {{filterParams.whoRep}} <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-            <li><a ng-click="chooseItem('', filterParams.stat, filterParams.sortBy, filterParams.sortDirection)">Empty</a></li>
-            <li ng-repeat="param in parameters.ParametersForAFilter">
-                <a ng-click="chooseItem(param, filterParams.stat, filterParams.sortBy, filterParams.sortDirection)">{{param}}</a>
-            </li>
-        </ul>
+
+            <button class="btn btn-info" ng-click="open()">Add</button>
+
+
+            <div class="btn-group" dropdown is-open="status.isopen" class="col-md-1">
+                <button type="button" class="btn btn-primary dropdown-toggle" ng-disabled="disabled">
+                    {{filterParams.whoRep}} <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a ng-click="chooseItem('', filterParams.stat, filterParams.sortBy, filterParams.sortDirection)">Empty</a></li>
+                    <li ng-repeat="param in parameters.ParametersForAFilter">
+                        <a ng-click="chooseItem(param, filterParams.stat, filterParams.sortBy, filterParams.sortDirection)">{{param}}</a>
+                    </li>
+                </ul>
+            </div>
+
+
+
+
+            <div class="btn-group" dropdown is-open="status.isopen1" class="col-md-2">
+                <button type="button" class="btn btn-primary dropdown-toggle" ng-disabled="disabled">
+                    {{filterParams.stat}} <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a ng-click="chooseItem(filterParams.whoRep, '', filterParams.sortBy, filterParams.sortDirection)">Empty</a></li>
+                    <li ng-repeat="status in StatusDropDownList">
+                        <a ng-click="chooseItem(filterParams.whoRep, status, filterParams.sortBy, filterParams.sortDirection)">{{status}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-md-offset-4">
+            <pagination total-items="parameters.CountBugs" ng-model="currentPage" ng-change="pageChanged()"></pagination>
+        </div>
+
     </div>
 
 
-
-
-    <div class="btn-group" dropdown is-open="status.isopen1">
-        <button type="button" class="btn btn-primary dropdown-toggle" ng-disabled="disabled">
-            {{filterParams.stat}} <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-            <li><a ng-click="chooseItem(filterParams.whoRep, '', filterParams.sortBy, filterParams.sortDirection)">Empty</a></li>
-            <li ng-repeat="status in StatusDropDownList">
-                <a ng-click="chooseItem(filterParams.whoRep, status, filterParams.sortBy, filterParams.sortDirection)">{{status}}</a>
-            </li>
-        </ul>
-    </div>
-
-    <pagination total-items="parameters.CountBugs" ng-model="currentPage" ng-change="pageChanged()"></pagination>
 
     <table class="table table-hover">
-     
+
         <tr>
             <th>Id</th>
             <th>Who reported</th>

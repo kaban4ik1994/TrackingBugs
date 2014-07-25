@@ -26,6 +26,13 @@ app.controller('BugListCtrl', ['$scope', 'Bug', '$modal', '$interval', function 
 
     ////////////////////////
 
+    ///// колапс
+    $scope.isCollapsed = true;
+
+    /////
+
+
+
     ///////это выпадающий список
 
     $scope.status = {

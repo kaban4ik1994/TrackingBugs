@@ -19,9 +19,6 @@ namespace Backend.Controllers
     {
         private BugContext _db = new BugContext();
 
-
-
-
         public IEnumerable<Bug> Get(int offset, int limit, [FromUri]FilterSettings filterSettings)
         {
 
