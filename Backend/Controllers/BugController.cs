@@ -93,7 +93,7 @@ namespace Backend.Controllers
         }
 
         [System.Web.Http.HttpPost]
-        public void Post(string date, string status, string whoReported)
+        public IdBug Post(string date, string status, string whoReported)
         {
             var bug = new Bug { Status = status, Id = 0 };
             char[] charsToTrim = { '\\', '\"' };
@@ -102,6 +102,8 @@ namespace Backend.Controllers
             bug.WhoReported = whoReported;
             _db.Bugs.Add(bug);
             _db.SaveChanges();
+            return new IdBug {Id = bug.Id};
+
         }
 
         [System.Web.Http.HttpPut]

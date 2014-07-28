@@ -1,22 +1,36 @@
 ﻿<!DOCTYPE html>
 <html lang="en-US">
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-   
-    </head>
-    <body>
-        
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="Content/bootstrap.css">
+    <link rel="stylesheet" href="Content/bootstrap-theme.css">
+</head>
+<body>
+
+    <form action="" id="addBug">
+        <input type="text" placeholder="Ваша новая задача">
+        <input type="submit" value="Добавить задачу">
+    </form>
+
+    <div class="bugs">
         <script id="bugTemplate" type="text/template">
-            <strong><%= whoReported %></strong>
+            <td><%=Id%></td>
+            <td><%= WhoReported %></td>
+            <td><%=Date%></td>
+            <td><%=Status%></td>
+            <td><button class="btn btn-warning">Edit</button></td>
+            <td><button class="delete btn btn-danger">Delete</button></td>
         </script>
+    </div>
+    <script src="Scripts/jquery-2.1.1.js"></script>
+    <script src="Scripts/underscore.js"></script>
+    <script src="Scripts/backbone.js"></script>
 
-    
-        <script src="Scripts/jquery-2.1.1.js"></script>
-        <script src="Scripts/underscore.js"></script>
-        <script  src="Scripts/backbone.js"></script>
+    <script src="app/App.js"></script>
 
-        <script src="app/TrackingBugs.js"></script>
 
-    </body>     
+
+
+</body>
 </html>

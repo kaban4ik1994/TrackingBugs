@@ -4,3 +4,9 @@ E:\программирование\github\TrackingBugs\Frontend(backbine)\bin\F
 E:\программирование\github\TrackingBugs\Frontend(backbine)\obj\Debug\Frontend(backbone).csprojResolveAssemblyReference.cache
 E:\программирование\github\TrackingBugs\Frontend(backbine)\obj\Debug\Frontend(backbine).dll
 E:\программирование\github\TrackingBugs\Frontend(backbine)\obj\Debug\Frontend(backbine).pdb
+E:\github\TrackingBugs\Frontend(backbine)\bin\Frontend(backbine).dll.config
+E:\github\TrackingBugs\Frontend(backbine)\bin\Frontend(backbine).dll
+E:\github\TrackingBugs\Frontend(backbine)\bin\Frontend(backbine).pdb
+E:\github\TrackingBugs\Frontend(backbine)\obj\Debug\Frontend(backbone).csprojResolveAssemblyReference.cache
+E:\github\TrackingBugs\Frontend(backbine)\obj\Debug\Frontend(backbine).dll
+E:\github\TrackingBugs\Frontend(backbine)\obj\Debug\Frontend(backbine).pdb
