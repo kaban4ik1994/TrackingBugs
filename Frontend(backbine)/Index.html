@@ -8,20 +8,51 @@
 </head>
 <body>
 
-    <form action="" id="addBug">
-        <input type="text" placeholder="Ваша новая задача">
-        <input type="submit" value="Добавить задачу">
-    </form>
+    <div class="row">
 
-    <div class="bugs">
+        <div class="col-md-7 col-md-offset-0">
+            
+            <div id="addBug">
+                <input type="text" id="id" value="0" disabled>
+                <input type="text" id="whoRep" list="whoRepList" placeholder="whoReported" required>
+                <datalist id="whoRepList">
+                    <option>pupkin</option>
+                    <option>ivanov</option>
+                    <option>kiselev</option>
+                </datalist>
+                <input type="date" id="date" value="2014-07-15T00:00:00" placeholder="date" required>
+                <input type="text" id="status" list="statusList" placeholder="status" required>
+                <datalist id="statusList">
+                    <option>fixed</option>
+                    <option>not fixed</option>
+                </datalist>
+                <button id="add" class="btn btn-info">save</button>
+                <button id="clear" class="btn btn-info">clear</button>
+            </div>
+        </div>
+
+    </div>
+    <br/>
+    <div id="filter">
+    
+       
+    </div>
+    
+    
+    <br/>
+    <div>
         <script id="bugTemplate" type="text/template">
             <td><%=Id%></td>
-            <td><%= WhoReported %></td>
+            <td><%=WhoReported %></td>
             <td><%=Date%></td>
             <td><%=Status%></td>
-            <td><button class="btn btn-warning">Edit</button></td>
+            <td><button class="edit btn btn-warning">Edit</button></td>
             <td><button class="delete btn btn-danger">Delete</button></td>
+      
         </script>
+
+        
+
     </div>
     <script src="Scripts/jquery-2.1.1.js"></script>
     <script src="Scripts/underscore.js"></script>

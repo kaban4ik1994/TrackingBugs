@@ -119,6 +119,7 @@ namespace Backend.Controllers
                 bug.Date = Convert.ToDateTime(date);
                 bug.WhoReported = whoReported;
                 _db.SaveChanges();
+                idBug = bug.Id;
             }
             else
             {

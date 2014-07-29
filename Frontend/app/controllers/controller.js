@@ -3,12 +3,6 @@ app.controller('BugListCtrl', ['$scope', 'Bug', '$modal', '$interval', function 
 
 
 
-    /////анимашки
-    $scope.mouse = false;
-    $scope.sun = false;
-    $scope.snow = false;
-
-    /////
     //////////////////тут алерты
     $scope.alerts = [];
 

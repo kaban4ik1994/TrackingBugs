@@ -2,12 +2,10 @@
 
 
 
-<div class="mouse" ng-show="mouse"></div>
-
 <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
 
 <div class="container">
-    <div class="row" style="margin-top: 10px; opacity: 0.8">
+    <div class="row" style="margin-top: 10px;">
         <button type="button" class="btn btn-info col-md-1" style="width: 18%" ng-click="isCollapsed=!isCollapsed">Menu</button>
 
         <div collapse="isCollapsed" class="col-md-offset-2" style="position: fixed; z-index: 9999">
@@ -27,8 +25,6 @@
             </div>
 
 
-
-
             <div class="btn-group" dropdown is-open="status.isopen1">
                 <button type=" button" class="btn btn-primary dropdown-toggle" ng-disabled="disabled">
                     {{filterParams.stat}} <span class="caret"></span>
@@ -41,9 +37,6 @@
                 </ul>
             </div>
 
-            <div class="btn-group">
-                <label class="btn btn-primary" ng-model="mouse" btn-checkbox>Mouse</label>
-            </div>
 
         </div>
 
