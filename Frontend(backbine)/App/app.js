@@ -154,6 +154,7 @@ App.Views.AddBug = Backbone.View.extend({
     },
 
     initialize: function () {
+
         _.bindAll(this, "createSuccess");
     },
 
@@ -165,14 +166,14 @@ App.Views.AddBug = Backbone.View.extend({
     },
 
 
-    addBug: function () {  ///это выполняется дофига раз.. почему ? 
-        console.log("fdsf");
+    addBug: function () {
         var newBug = new App.Models.Bug({
             WhoReported: $("#whoRep").val(),
             Date: $("#date").val(),
             Status: $("#status").val(),
             Id: $("#id").val(),
         });
+
 
 
         newBug.save(null, {
@@ -219,9 +220,6 @@ var filterCollections;
 App.Views.Filter = Backbone.View.extend(
     {
         el: '#filter',
-
-    
-
         events:
         {
             'click #filt': 'filterBugs'
@@ -229,23 +227,19 @@ App.Views.Filter = Backbone.View.extend(
 
 
         filterBugs: function () {
-            console.log($('#param').val());
             $('table').remove();
-           var bugs = new App.Collections.Bugs().fetch({
+            bugs = new App.Collections.Bugs().fetch({
                 data: { offset: '0', limit: '1000', WhoReported: $('#param').val() },
 
-                success: function(collection) {
+                success: function (collection) {
                     var bugsView = new App.Views.Bugs({ collection: collection });
+                    addBugView.collection = collection;
                     $(document.body).append(bugsView.render().el);
-
                 }
             });
-            console.log(bugs);
-
         },
 
         initialize: function () {
-            _.bindAll(this,"filterBugs");
             var params = new App.Models.Params().fetch({
                 success:
                     function (response) {
@@ -270,7 +264,7 @@ App.Views.Filter = Backbone.View.extend(
 
 );
 
-new App.Views.Filter();
+
 
 
 
@@ -280,6 +274,7 @@ new App.Views.Filter();
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 var addBugView;
+var filterView;
 
 var bugs = new App.Collections.Bugs().fetch({
     data: { offset: '0', limit: '1000' },
@@ -287,9 +282,9 @@ var bugs = new App.Collections.Bugs().fetch({
     success: function (collection) {
         var bugsView = new App.Views.Bugs({ collection: collection });
         addBugView = new App.Views.AddBug({ collection: collection });
+        filterView = new App.Views.Filter({ collection: collection });
         $(document.body).append(bugsView.render().el);
     }
-
 });
 
 
