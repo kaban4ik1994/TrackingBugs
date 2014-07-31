@@ -58,9 +58,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\collection\bugs.js" />
+    <Content Include="App\main.js" />
     <Content Include="App\model\bug.js" />
+    <Content Include="App\model\params.js" />
+    <Content Include="App\view\addBugView.js" />
     <Content Include="App\view\bugsView.js" />
     <Content Include="App\view\bugView.js" />
+    <Content Include="App\view\filterView.js" />
+    <Content Include="App\view\paginationView.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />

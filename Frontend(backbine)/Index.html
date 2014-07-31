@@ -37,9 +37,16 @@
     
        
     </div>
-    
+    <div id="pagination">
+        
+
+    </div>
+
     
     <br/>
+   
+    
+    
     <div>
         <script id="bugTemplate" type="text/template">
             <td><%=Id%></td>
@@ -50,18 +57,25 @@
             <td><button class="delete btn btn-danger">Delete</button></td>
       
         </script>
-
         
-
     </div>
+    
+
+
     <script src="Scripts/jquery-2.1.1.js"></script>
     <script src="Scripts/underscore.js"></script>
     <script src="Scripts/backbone.js"></script>
 
-    <script src="app/App.js"></script>
-
-
-
+    <script src="App/App.js"></script>
+    <script src="App/model/bug.js"></script>
+    <script src="App/model/params.js"></script>
+    <script src="App/collection/bugs.js"></script>
+    <script src="App/view/bugView.js"></script>
+    <script src="App/view/bugsView.js"></script>
+    <script src="App/view/addBugView.js"></script>
+    <script src="App/view/filterView.js"></script>
+    <script src="App/view/paginationView.js"></script>
+    <script src="App/main.js"></script>
 
 </body>
 </html>

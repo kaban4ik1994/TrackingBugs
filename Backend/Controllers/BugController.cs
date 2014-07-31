@@ -25,6 +25,7 @@ namespace Backend.Controllers
 
 
             var result = new List<Bug>();
+            if (offset < 0) return result;
             var temp = _db.Bugs.Where(x => x.WhoReported == filterSettings.WhoReported || string.IsNullOrEmpty(filterSettings.WhoReported));
             temp = temp.Where(x => x.Status == filterSettings.Status || string.IsNullOrEmpty(filterSettings.Status));
 
