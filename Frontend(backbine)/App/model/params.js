@@ -6,5 +6,6 @@ App.Models.Params = Backbone.Model.extend({
         CountBugs:0
     },
     
-    itemsToPage: 10
+    itemsToPage: 10,
+    offset:0
 });

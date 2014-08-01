@@ -10,56 +10,79 @@
         return Math.ceil(options.attributes.CountBugs / options.itemsToPage);
     },
 
-    offset: 0,
+ 
 
     stateNext: true,
     statePrev: true,
 
     previousPage: function () {
-        $('table').remove();
-        $('#param').val('');
-        this.offset = this.offset - options.itemsToPage;
-        bugs = new App.Collections.Bugs().fetch({
-            data: { offset: this.offset, limit: options.itemsToPage },
+  
+        options.offset = options.offset - options.itemsToPage;
+        if (options.offset < 0) {
+            options.offset = 0;
+           
+        } else {
+            $('table').remove();
+            $('#pagination .pager').children()[1].className = 'active';
+            bugs = new App.Collections.Bugs().fetch({
+                data: { offset: options.offset, limit: options.itemsToPage, WhoReported: $('#param').val() },
 
-            success: function(collection) {
-                var bugsView = new App.Views.Bugs({ collection: collection });
-                addBugView.collection = collection;
-                if (collection.length != 0) {
-                    $(document.body).append(bugsView.render().el);
-                  
+                success: function(collection) {
+                    var bugsView = new App.Views.Bugs({ collection: collection });
+                    addBugView.collection = collection;
+                    if (collection.length != 0) {
+                        $(document.body).append(bugsView.render().el);
+
+                    }
+
                 }
-
-            }            
-        })
-       
-            ;
-          
+            });
+        };
+        
+        if (options.offset == 0) {
+            $('#pagination .pager').children()[0].className = 'disabled';
+        }
 
     },
 
 
 
     nextPage: function () {
-        $('table').remove();
-        $('#param').val('');
-        this.offset = this.offset + options.itemsToPage;
-        bugs = new App.Collections.Bugs().fetch({
-            data: { offset: this.offset, limit: options.itemsToPage },
+       
 
-            success: function (collection) {
-                var bugsView = new App.Views.Bugs({ collection: collection });
-                addBugView.collection = collection;
-                $(document.body).append(bugsView.render().el);
-            }
-        });
+        // 
+        options.offset = options.offset + options.itemsToPage;
+        if (bugs.responseJSON.length<10) {
+            options.offset = options.offset - options.itemsToPage;
+            
+        } else {
+            $('table').remove();
+            $('#pagination .pager').children()[0].className = 'active';
+            bugs = new App.Collections.Bugs().fetch({
+                data: { offset: options.offset, limit: options.itemsToPage, WhoReported: $('#param').val() },
+
+                success: function (collection) {
+                    
+
+                    if (collection.length < 10) {
+                        $('#pagination .pager').children()[1].className = 'disabled';
+                    }
+
+                    var bugsView = new App.Views.Bugs({ collection: collection });
+                    addBugView.collection = collection;
+                    $(document.body).append(bugsView.render().el);
+                }
+            });
+        };
+      
+        
     },
 
     initialize: function () {
 
         $('#pagination').append('<ul class="pager">');
-        $('#pagination .pager').append('<li><a id="prev" class="previous" href="#">Previous</a></li>');
-        $('#pagination .pager').append('<li><a id="next" class="next" href="#">Next</a></li>');
+        $('#pagination .pager').append('<li class="disabled"><a id="prev"  href="#">Previous</a></li>');
+        $('#pagination .pager').append('<li><a id="next" href="#">Next</a></li>');
         $('#pagination').append('</ul>');
     }
 })

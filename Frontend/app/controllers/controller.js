@@ -5,6 +5,8 @@ app.controller('BugListCtrl', ['$scope', 'Bug', '$modal', '$interval', function 
 
     //////////////////тут алерты
     $scope.alerts = [];
+    $scope.isLoading = true;
+
 
     $scope.closeAlert = function (index) {
         $scope.alerts.splice(index, 1);
@@ -57,6 +59,7 @@ app.controller('BugListCtrl', ['$scope', 'Bug', '$modal', '$interval', function 
 
 
     $scope.chooseItem = function (whoR, st, sortBy, sortD) {
+        $scope.isLoading = true;
         $scope.status.isopen = false;
         $scope.status.isopen1 = false;
         $scope.status.isopen2 = false;
@@ -65,7 +68,8 @@ app.controller('BugListCtrl', ['$scope', 'Bug', '$modal', '$interval', function 
         $scope.filterParams.sortBy = sortBy;
         $scope.filterParams.sortDirection = sortD;
         $scope.currentPage = 1;
-        $scope.bugs = Bug.query({ offset: ($scope.currentPage - 1) * 10, limit: 10, WhoReported: $scope.filterParams.whoRep, Status: $scope.filterParams.stat, SortDirection: $scope.filterParams.sortDirection, SortBy: $scope.filterParams.sortBy });
+        $scope.bugs = Bug.query({ offset: ($scope.currentPage - 1) * 10, limit: 10, WhoReported: $scope.filterParams.whoRep, Status: $scope.filterParams.stat, SortDirection: $scope.filterParams.sortDirection, SortBy: $scope.filterParams.sortBy },
+            function() { $scope.isLoading = false; });
         $scope.parameters = Bug.get({ WhoReported: $scope.filterParams.whoRep, Status: $scope.filterParams.stat });
     };
     /////////
@@ -75,23 +79,21 @@ app.controller('BugListCtrl', ['$scope', 'Bug', '$modal', '$interval', function 
 
     $scope.currentPage = 1;
 
-
     $scope.StatusDropDownList = ['fixed',
         'not fixed'];
 
-
     $scope.parameters = Bug.get({ WhoReported: $scope.filterParams.whoRep, Status: $scope.filterParams.stat, SortBy: $scope.filterParams.sortBy, SortDirection: $scope.filterParams.sortDirection });
 
-
     $scope.pageChanged = function () {
-        $scope.bugs = Bug.query({ offset: ($scope.currentPage - 1) * 10, limit: 10, WhoReported: $scope.filterParams.whoRep, Status: $scope.filterParams.stat, SortBy: $scope.filterParams.sortBy, SortDirection: $scope.filterParams.sortDirection });
+        $scope.isLoading = true;
+        $scope.bugs = Bug.query({ offset: ($scope.currentPage - 1) * 10, limit: 10, WhoReported: $scope.filterParams.whoRep, Status: $scope.filterParams.stat, SortBy: $scope.filterParams.sortBy, SortDirection: $scope.filterParams.sortDirection }
+        ,function () { $scope.isLoading = false; });
     };
     //////////////////////////////////
 
-
     $scope.bugs = Bug.query({
         offset: ($scope.currentPage - 1) * 10, limit: 10, WhoReported: $scope.filterParams.whoRep, Status: $scope.filterParams.stat, SortBy: $scope.filterParams.sortBy, SortDirection: $scope.filterParams.sortDirection
-    });
+    }, function () { $scope.isLoading = false; });
 
     //////////////////////////////////////тут модальное окно
 
